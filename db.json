@@ -1,0 +1,76 @@
+{
+  "products": [
+    {
+      "image": "https://via.placeholder.com/300",
+      "brand": "xvxvc",
+      "price": 35345,
+      "description": "dgsdg",
+      "gender": "male",
+      "id": 1
+    },
+    {
+      "image": "https://via.placeholder.com/300",
+      "brand": "dfgdfg",
+      "price": "3000",
+      "description": "gdfgdfg",
+      "gender": "male",
+      "id": 2
+    },
+    {
+      "image": "https://via.placeholder.com/300",
+      "brand": "wewerte",
+      "price": 534,
+      "description": "sgdgsdg",
+      "gender": "female",
+      "id": 3
+    },
+    {
+      "image": "https://via.placeholder.com/300",
+      "brand": "wewerte",
+      "price": 534,
+      "description": "sgdgsdg",
+      "gender": "female",
+      "id": 4
+    },
+    {
+      "image": "https://via.placeholder.com/300",
+      "brand": "wewerte",
+      "price": 534,
+      "description": "sgdgsdg",
+      "gender": "female",
+      "id": 5
+    },
+    {
+      "image": "https://via.placeholder.com/300",
+      "brand": "wewerte",
+      "price": 534,
+      "description": "sgdgsdg",
+      "gender": "female",
+      "id": 6
+    },
+    {
+      "image": "https://via.placeholder.com/300",
+      "brand": "wewerte",
+      "price": 534,
+      "description": "sgdgsdg",
+      "gender": "female",
+      "id": 7
+    },
+    {
+      "image": "https://via.placeholder.com/300",
+      "brand": "wewerte",
+      "price": 534,
+      "description": "sgdgsdg",
+      "gender": "female",
+      "id": 8
+    },
+    {
+      "image": "https://via.placeholder.com/300",
+      "brand": "wewerte",
+      "price": 534,
+      "description": "sgdgsdg",
+      "gender": "female",
+      "id": 9
+    }
+  ]
+}
