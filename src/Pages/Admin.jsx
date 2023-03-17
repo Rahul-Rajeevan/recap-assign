@@ -45,6 +45,7 @@ const Admin = () => {
   };
   return (
     <Wrapper>
+      <h3>Add a product</h3>
       <form className="form1" onSubmit={(e) => handleSubmit(e)}>
         <FormControl
           onSubmit={(e) => {
@@ -79,6 +80,7 @@ const Admin = () => {
             value={product.description}
             onChange={(e) => handleChange(e)}
           />
+          <FormLabel>Category</FormLabel>
           <Select
             placeholder="Select category"
             value={product.gender}
@@ -90,6 +92,7 @@ const Admin = () => {
             <option value="kids">Kids</option>
           </Select>
         </FormControl>
+        <br/>
         <Button colorScheme="blue" type="submit">
           Submit
         </Button>
@@ -101,13 +104,17 @@ const Admin = () => {
 const Wrapper = styled.div`
   width: 400px;
   margin: auto;
+  margin-top:5%;
 
   .form-1 {
     display: flex;
     flex-direction: column;
     gap: 15px;
   }
-
+  h3{
+    font-size:20px;
+    color:blue;
+  }
   input {
     width: 80%;
     height: 40px;

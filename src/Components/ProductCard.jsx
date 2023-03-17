@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components';
 
 const ProductCard = ({product}) => {
   // const editProduct=(id,payload)=>{
@@ -10,17 +11,37 @@ const ProductCard = ({product}) => {
   //       })
   // }
   return (
-    <div>
+    <DIV>
       <Link to={`/product/${product.id}`}><img src={product.image} alt="" /></Link>
-      <h3>brand: {product.brand}</h3>
-      <p>price: {product.price}</p>
-      <p>category: {product.gender}</p>
-      <p>description: {product.description}</p>
+      <h3> <strong>Brand:</strong> {product.brand}</h3>
+      <p><strong>Price: </strong>{product.price}</p>
+      <p><strong>Category: </strong> {product.gender}</p>
+      <p><strong>Description: </strong> {product.description}</p>
       <button style={{color:"blue"}}>
         <Link to={`/edit/${product.id}`}>Edit</Link>
       </button>
-    </div>
+    </DIV>
   )
 }
+const DIV = styled.div`
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
 
+button:hover {
+  background-color: #3e8e41;
+}
+
+`;
 export default ProductCard

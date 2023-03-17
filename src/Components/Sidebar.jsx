@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import styled from "styled-components";
 
 const Sidebar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -30,8 +31,8 @@ const Sidebar = () => {
   }, [category,order]);
 
   return (
-    <div>
-      <h3>Sort by category</h3>
+    <DIV>
+      <strong>Sort by category</strong>
       <div>
         <input
           type="checkbox"
@@ -60,15 +61,24 @@ const Sidebar = () => {
         <label>Kids</label>
       </div>
       <br />
-      <h3>Sort by Price</h3>
+      <strong>Sort by Price</strong>
       <div onChange={handleOrder}>
+        <div>
         <input type="radio" name="order" value="asc" checked={order==="asc"}/>
         <label>Ascending</label>
+        </div>
+        <div>
         <input type="radio" name="order" value="desc" checked={order==="desc"}/>
         <label>Descending</label>
+        </div>
       </div>
-    </div>
+    </DIV>
   );
 };
+
+const DIV=styled.div`
+margin:10px 0px 0px 20px;
+`
+
 
 export default Sidebar;

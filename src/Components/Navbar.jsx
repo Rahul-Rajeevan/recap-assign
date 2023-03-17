@@ -13,10 +13,15 @@ const Navbar = () => {
 }
 
 const DIV=styled.div`
-display:flex;
-align-items:center;
-gap:20px;
-border-bottom: 1px solid gray;
+background-color: white;
+height: 60px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 20px;
+box-shadow: 0 0 5px rgba(0,0,0,0.2);
+top:0;
+position:sticky;
 `
 
 export default Navbar

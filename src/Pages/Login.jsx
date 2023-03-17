@@ -35,13 +35,15 @@ const Login = () => {
 
   return (
     <DIV auth={auth}>
-      <h3>{auth ? "Login Success" : "Login Failure"}</h3>
       <form className="form-1" onSubmit={(e) => handle(e)}>
+      <h3>{auth.isAuth ? "Login Success" : "Login Failure"}</h3>
+      <label>Email</label>
         <input
           type="email"
           placeholder="email"
           ref={(e) => (user.current["email"] = e)}
         />
+        <label>Password</label>
         <input
           type="password"
           placeholder="password"
@@ -54,17 +56,28 @@ const Login = () => {
 };
 
 const DIV = styled.div`
-  width: 400px;
+  background-color: #cf3c3c;
+  width: 100%;
+  height: 100vh;
+  margin-top: -70px;
+  padding-top: 70px;
   margin: auto;
 
   .form-1 {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    width: 30%;
+    align-items: center;
+    height: 60vh;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: white;
+    /* color: white; */
+    margin: auto;
+    justify-content: space-evenly;
   }
 
   h3 {
-    color: ${({ auth }) => (auth ? `green` : `red`)};
+    color: ${({ auth }) => (auth.isAuth ? `green` : `red`)};
   }
 
   input {
@@ -73,9 +86,20 @@ const DIV = styled.div`
   }
 
   button {
-    width: 20%;
-    height: 35px;
+    background-color: #cf3c3c;
+    color: white;
+    width: 70%;
+    height: 45px;
+    border-radius: 25px;
+    font-size: 20px;
+    border: none;
   }
+  button:hover{
+    background-color: #071a52;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
 `;
 
 export default Login;
