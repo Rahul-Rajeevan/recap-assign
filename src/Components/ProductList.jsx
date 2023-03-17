@@ -1,23 +1,36 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import ProductCard from './ProductCard';
-import { useDispatch, useSelector } from 'react-redux';
-import { getProduct } from '../Redux/ProductReducer/action';
 import styled from 'styled-components';
 import { useLocation, useSearchParams } from 'react-router-dom';
+import axios from"axios";
+import { ProductContext } from '../Context/ProductContext';
 
+const initialState={
+  isLoading:false,
+  products:[],
+  isError:false
+}
 const ProductList = () => {
-  const dispatch=useDispatch()
-  const [searchParams]=useSearchParams()
-  const location=useLocation()
-  const {products}=useSelector((store)=>store.product)
+const [searchParams]=useSearchParams()
+const location=useLocation()
+const { state, dispatch } = useContext(ProductContext);
+
+const getProduct=(params)=>{
+  dispatch({type:"PRODUCT_REQUEST"})
+  axios.get("http://localhost:8080/products",params).then((res)=>{
+      dispatch({type:"GET_PRODUCT_SUCCESS",payload:res.data})}).catch((err)=>{
+          dispatch({type:"PRODUCT_FAILURE"})
+      })
+}
+
   useEffect(() => {
     let obj={params:{gender:searchParams.getAll("category"),_sort:searchParams.get("order")&&"price",_order:searchParams.get("order")}}
-    dispatch(getProduct(obj))
+    getProduct(obj)
   }, [location.search])
   
   return (
     <DIV>
-{products.length>0&&products.map((e)=><ProductCard key={e.id} product={e}/> )}
+{state.products.length>0&&state.products.map((e)=><ProductCard key={e.id} product={e}/> )}
     </DIV>
   )
 }

@@ -1,12 +1,11 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useContext } from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
+import { AuthContext } from '../Context/AuthContext';
 
 const PrivateRoute = ({children}) => {
-const {auth}=useSelector((store)=>store.authentication)
+  const { auth } = useContext(AuthContext);
 const location=useLocation();
-console.log(location.pathname);
-  return auth?children:<Navigate to={"/login"} state={location.pathname} replace={true}/>
+  return auth.isAuth?children:<Navigate to={"/login"} state={location.pathname} replace={true}/>
 }
 
 export default PrivateRoute

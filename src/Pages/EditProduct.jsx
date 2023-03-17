@@ -1,25 +1,29 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
-import { store } from '../Redux/store'
-import { editProduct } from '../Redux/ProductReducer/action'
+import { ProductContext } from '../Context/ProductContext';
+import axios from 'axios';
 
 const EditProduct = () => {
   // const location=useLocation()
   // console.log(location);
+  const {state,dispatch} = useContext(ProductContext);
   const {id}=useParams()
-  const {products}=useSelector((store)=>store.product)
   const [data,setData]=useState("")
-  const dispatch=useDispatch()
   const handle=()=>{
     const newData={
       price:data
     }
-    dispatch(editProduct(id,newData))
-    // console.log(newData);
+    const editProduct=(id,payload)=>{
+      dispatch({ type: "PRODUCT_REQUEST" });
+      axios.patch(`http://localhost:8080/products/${id}`,payload).then(()=>{
+        dispatch({ type: "PATCH_PRODUCT_SUCCESS" })}).catch((err)=>{
+            dispatch({ type: "PRODUCT_FAILURE" });
+          })
+    }
+    console.log(newData);
   }
   useEffect(() => {
-   const item= products.find((e)=>e.id===+id)
+   const item= state.products.find((e)=>e.id===+id)
    item&&setData(item.price)
   }, [])
   

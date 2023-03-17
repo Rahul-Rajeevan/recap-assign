@@ -1,26 +1,38 @@
-import React, { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useContext, useRef } from "react";
 import styled from "styled-components";
-import { login } from "../Redux/AuthReducer/action";
 import { useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../Context/AuthContext";
 
 const Login = () => {
   const user = useRef({});
-  const dispatch = useDispatch();
   const location = useLocation();
-  console.log(location);
   const navigate = useNavigate();
-  const { auth } = useSelector((store) => store.authentication);
+  const { auth, loginUser, logoutUser } = useContext(AuthContext);
 
-  const handle = (e) => {
+  async function handle(e) {
     e.preventDefault();
-    dispatch(
-      login({
-        email: user.current.email.value,
-        password: user.current.password.value,
-      })
-    ).then(() => navigate(location.state, { replace: true }));
-  };
+    // setloading(true);
+
+    let t = { email: user.current.email.value, password: user.current.password.value};
+
+    try {
+      let r = await fetch("https://reqres.in/api/login", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(t),
+      });
+      let res = await r.json();
+
+      if (res.token) {
+        // console.log("token",res.token)
+        loginUser(res.token);
+        navigate(location.state, { replace: true });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <DIV auth={auth}>
       <h3>{auth ? "Login Success" : "Login Failure"}</h3>
